@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: kabianga-lost-and-found
+    env: node
+    plan: starter
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: SESSION_SECRET
+        value: change_this_secret
+      - key: DB_NAME
+        value: kabianga_lost_and_found
+      - key: EMAIL_FROM
+        value: 'Kabianga Lost & Found <no-reply@kabianga.ac.ke>'
+
+databases:
+  - name: kabianga-lost-and-found-db
+    engine: mysql
+    version: '8'
+    plan: starter
+    databaseName: kabianga_lost_and_found
+    user: render
+    password: render

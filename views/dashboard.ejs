@@ -1,0 +1,36 @@
+<%- include('partials/header', { title: title }) %>
+<section class="dashboard-summary">
+  <div class="summary-card">
+    <h2>Available Lost Items</h2>
+    <p>See all items held by security and file claim requests.</p>
+  </div>
+  <div class="summary-card">
+    <h2>Notifications</h2>
+    <ul class="notification-list">
+      <% if (notifications.length) { %>
+        <% notifications.forEach((note) => { %>
+          <li><%= note.message %> <span class="small">(<%= new Date(note.created_at).toLocaleString() %>)</span></li>
+        <% }) %>
+      <% } else { %>
+        <li>No recent notifications.</li>
+      <% } %>
+    </ul>
+  </div>
+</section>
+<section class="card-grid">
+  <% items.forEach((item) => { %>
+    <article class="item-card">
+      <% if (item.image_path) { %>
+        <img src="<%= item.image_path %>" alt="Item image" />
+      <% } %>
+      <div class="item-body">
+        <h3><%= item.title %></h3>
+        <p><%= item.description %></p>
+        <p><strong>Reported by:</strong> <%= item.reporter %></p>
+        <p><strong>Status:</strong> <%= item.claim_status %></p>
+        <a href="/items/claim/<%= item.id %>" class="secondary-btn">Claim Item</a>
+      </div>
+    </article>
+  <% }) %>
+</section>
+<%- include('partials/footer') %>

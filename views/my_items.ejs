@@ -1,0 +1,33 @@
+<%- include('partials/header', { title: title }) %>
+<div class="page-card">
+  <h1>My Reports & Claims</h1>
+  <% if (items.length) { %>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Status</th>
+          <th>Claim Status</th>
+          <th>Reported By</th>
+          <th>Claimed By</th>
+          <th>Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.forEach((item) => { %>
+          <tr>
+            <td><%= item.title %></td>
+            <td><%= item.status %></td>
+            <td><%= item.claim_status %></td>
+            <td><%= item.reported_by === user.id ? 'You' : item.reporter_name || 'Unknown' %></td>
+            <td><%= item.claimed_by === user.id ? 'You' : item.claimant_name || 'N/A' %></td>
+            <td><%= new Date(item.updated_at).toLocaleDateString() %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>You have not made any reports or claims yet.</p>
+  <% } %>
+</div>
+<%- include('partials/footer') %>

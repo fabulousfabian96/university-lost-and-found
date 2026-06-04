@@ -1,0 +1,32 @@
+<%- include('partials/header', { title: title }) %>
+<div class="page-card">
+  <h1>Security Dashboard</h1>
+  <% if (claims.length) { %>
+    <table class="data-table">
+      <thead>
+        <tr><th>Item</th><th>Reporter</th><th>Claimer</th><th>Claim Contact</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        <% claims.forEach((claim) => { %>
+          <tr>
+            <td><%= claim.title %></td>
+            <td><%= claim.reporter_name %></td>
+            <td><%= claim.claimant_name || 'Unknown' %></td>
+            <td><%= claim.claim_message || 'N/A' %></td>
+            <td>
+              <form action="/security/claims/<%= claim.id %>/approve" method="POST" class="inline-form">
+                <button type="submit" class="approve-btn">Approve</button>
+              </form>
+              <form action="/security/claims/<%= claim.id %>/reject" method="POST" class="inline-form">
+                <button type="submit" class="reject-btn">Reject</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No pending claim requests right now.</p>
+  <% } %>
+</div>
+<%- include('partials/footer') %>

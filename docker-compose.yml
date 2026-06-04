@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: example_password
+      DB_NAME: kabianga_lost_and_found
+      SESSION_SECRET: change_this_secret
+      EMAIL_HOST: smtp.example.com
+      EMAIL_PORT: 587
+      EMAIL_SECURE: 'false'
+      EMAIL_USER: your_smtp_username
+      EMAIL_PASS: your_smtp_password
+      EMAIL_FROM: 'Kabianga Lost & Found <no-reply@kabianga.ac.ke>'
+      PORT: 3000
+    depends_on:
+      - db
+    volumes:
+      - ./public/uploads:/usr/src/app/public/uploads
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example_password
+      MYSQL_DATABASE: kabianga_lost_and_found
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:

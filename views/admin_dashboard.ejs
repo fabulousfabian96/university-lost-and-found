@@ -1,0 +1,60 @@
+<%- include('partials/header', { title: title }) %>
+<div class="page-card">
+  <h1>Admin Dashboard</h1>
+  <section class="admin-grid">
+    <div>
+      <h2>Users</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Name</th><th>Email</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <% users.forEach((user) => { %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.role %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h2>Create New User</h2>
+      <form action="/admin/users/create" method="POST" class="form-grid">
+        <label>Name</label>
+        <input type="text" name="name" required />
+        <label>Email</label>
+        <input type="email" name="email" required />
+        <label>Password</label>
+        <input type="password" name="password" required />
+        <label>Role</label>
+        <select name="role" required>
+          <option value="user">User</option>
+          <option value="security">Security</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button type="submit" class="primary-btn">Create User</button>
+      </form>
+    </div>
+  </section>
+  <h2>All Items</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Item</th><th>Status</th><th>Claim Status</th><th>Reporter</th><th>Claimer</th><th>Updated</th></tr>
+    </thead>
+    <tbody>
+      <% items.forEach((item) => { %>
+        <tr>
+          <td><%= item.title %></td>
+          <td><%= item.status %></td>
+          <td><%= item.claim_status %></td>
+          <td><%= item.reporter_name %></td>
+          <td><%= item.claimant_name || 'N/A' %></td>
+          <td><%= new Date(item.updated_at).toLocaleString() %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('partials/footer') %>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %> | Kabianga Lost & Found</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Kabianga Lost & Found</div>
+    <nav class="nav-links">
+      <% if (user) { %>
+        <span>Welcome, <strong><%= user.name %></strong> (<%= user.role %>)</span>
+        <a href="/">Home</a>
+        <% if (user.role === 'admin') { %>
+          <a href="/admin/dashboard">Admin</a>
+        <% } else if (user.role === 'security') { %>
+          <a href="/security/dashboard">Security</a>
+        <% } else { %>
+          <a href="/items/dashboard">Dashboard</a>
+          <a href="/items/new">Report Lost Item</a>
+          <a href="/items/my-items">My Items</a>
+        <% } %>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+      <% } %>
+    </nav>
+  </header>
+
+  <main class="page-content">
+    <% if (success.length) { %>
+      <div class="alert success"><%= success.join(' ') %></div>
+    <% } %>
+    <% if (error.length) { %>
+      <div class="alert error"><%= error.join(' ') %></div>
+    <% } %>

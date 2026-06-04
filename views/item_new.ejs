@@ -1,0 +1,14 @@
+<%- include('partials/header', { title: title }) %>
+<div class="page-card">
+  <h1>Report a Lost Item</h1>
+  <form action="/items/new" method="POST" enctype="multipart/form-data" class="form-grid">
+    <label>Item Title</label>
+    <input type="text" name="title" placeholder="e.g. Laptop, Umbrella" required />
+    <label>Description</label>
+    <textarea name="description" rows="5" placeholder="Describe the item and where you lost it." required></textarea>
+    <label>Photo (optional)</label>
+    <input type="file" name="image" accept="image/*" />
+    <button type="submit" class="primary-btn">Submit Report</button>
+  </form>
+</div>
+<%- include('partials/footer') %>

@@ -1,0 +1,16 @@
+<%- include('partials/header', { title: title }) %>
+<div class="page-card">
+  <h1>Claim "<%= item.title %>"</h1>
+  <p><%= item.description %></p>
+  <% if (item.image_path) { %>
+    <img src="<%= item.image_path %>" alt="Item image" class="claim-image" />
+  <% } %>
+  <form action="/items/claim/<%= item.id %>" method="POST" class="form-grid">
+    <label>Your Name</label>
+    <input type="text" name="claimantName" placeholder="Your full name" required />
+    <label>Contact Info</label>
+    <input type="text" name="claimantContact" placeholder="Mobile number or email" required />
+    <button type="submit" class="primary-btn">Submit Claim Request</button>
+  </form>
+</div>
+<%- include('partials/footer') %>
