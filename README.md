@@ -72,6 +72,8 @@ This app is ready to deploy on platforms like Render, Railway, or Heroku.
    - `EMAIL_FROM`
 7. If Render provides `DATABASE_URL`, the app will also use it automatically.
 
+> The app now initializes the database schema and creates default admin/security accounts on first startup, so manual seeding is not required in Render.
+
 ### Docker deployment
 A `Dockerfile` and `docker-compose.yml` are included for local or cloud container deployment.
 

@@ -8,6 +8,7 @@ const itemRoutes = require('./routes/items');
 const adminRoutes = require('./routes/admin');
 const securityRoutes = require('./routes/security');
 const { ensureLoggedIn } = require('./routes/middleware');
+const initDatabase = require('./init-db');
 
 dotenv.config();
 
@@ -52,6 +53,13 @@ app.use((req, res) => {
   res.status(404).render('404', { title: 'Not Found' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+initDatabase()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Failed to initialize database:', err);
+    process.exit(1);
+  });
