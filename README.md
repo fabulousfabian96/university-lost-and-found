@@ -48,7 +48,7 @@ This app is ready to deploy on platforms like Render, Railway, or Heroku.
 ### Render deployment
 1. Push this repository to GitHub, GitLab, or Bitbucket.
 2. Create a new service on Render and connect your repo.
-3. Choose the `main` branch and set the build command to:
+3. Choose the `master` branch and set the build command to:
    ```bash
    npm install
    ```

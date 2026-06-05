@@ -3,7 +3,7 @@ services:
     name: kabianga-lost-and-found
     env: node
     plan: starter
-    branch: main
+    branch: master
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
