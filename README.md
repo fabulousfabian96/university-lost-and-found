@@ -56,13 +56,9 @@ This app is ready to deploy on platforms like Render, Railway, or Heroku.
    ```bash
    npm start
    ```
-5. Create a managed MySQL database on Render, with database name `kabianga_lost_and_found`.
-6. In Render service settings, add these environment variables:
-   - `DB_HOST`
-   - `DB_PORT`
-   - `DB_USER`
-   - `DB_PASSWORD`
-   - `DB_NAME=kabianga_lost_and_found`
+5. Create a managed Postgres database on Render, with database name `kabianga_lost_and_found`.
+6. If you are using the `render.yaml` blueprint file, the service will receive `DATABASE_URL` automatically from the attached Postgres database resource.
+7. In Render service settings, add these environment variables:
    - `SESSION_SECRET`
    - `EMAIL_HOST`
    - `EMAIL_PORT`
@@ -70,7 +66,7 @@ This app is ready to deploy on platforms like Render, Railway, or Heroku.
    - `EMAIL_USER`
    - `EMAIL_PASS`
    - `EMAIL_FROM`
-7. If Render provides `DATABASE_URL`, the app will also use it automatically.
+8. If Render does not automatically set `DATABASE_URL`, add it manually using the internal Postgres connection string from the database info page.
 
 > The app now initializes the database schema and creates default admin/security accounts on first startup, so manual seeding is not required in Render.
 

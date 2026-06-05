@@ -10,6 +10,10 @@ services:
     envVars:
       - key: SESSION_SECRET
         value: change_this_secret
+      - key: DATABASE_URL
+        fromDatabase:
+          name: kabianga-lost-and-found-db
+          property: connectionString
       - key: DB_NAME
         value: kabianga_lost_and_found
       - key: EMAIL_FROM
@@ -17,8 +21,8 @@ services:
 
 databases:
   - name: kabianga-lost-and-found-db
-    engine: mysql
-    version: '8'
+    engine: postgres
+    version: '15'
     plan: starter
     databaseName: kabianga_lost_and_found
     user: render
